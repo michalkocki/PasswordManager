@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
 //   Globals
     var passwords: [NSManagedObject] = []
+    var selectionIndex: Int = 0
 
 
     override func viewDidLoad() {
@@ -29,23 +30,34 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        fetchData()
+        self.tableView.reloadData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "PreviewPasswordSegue") {
+        let previewPasswordSegue = segue.destination as! PreviewViewController
+        previewPasswordSegue.passwordToPreview = passwords[selectionIndex]
+        }
+    }
+    
+    func fetchData() {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Password")
         
-//      Fetching data from coredata to list
         do {
             passwords = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
             print("Could not fetch data. \(error), \(error.userInfo)")
         }
-        self.tableView.reloadData()
     }
+    
     
     
 }
 
-extension ViewController: UITableViewDataSource {
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return passwords.count
     }
@@ -61,9 +73,25 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            managedContext.delete(passwords[indexPath.row])
+            
+            do { try managedContext.save() }
+            catch let error as NSError {
+                print("Could not save. \(error), \(error.userInfo)")
+            }
+            
             passwords.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectionIndex = indexPath.row
+        self.performSegue(withIdentifier: "PreviewPasswordSegue", sender: self)
+    }
+    
 
 }

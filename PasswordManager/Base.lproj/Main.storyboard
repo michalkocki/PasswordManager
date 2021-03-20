@@ -48,6 +48,7 @@
                                 <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="1en-ba-TOo"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="Vhc-4h-k6t"/>
                                 </connections>
                             </tableView>
                         </subviews>
@@ -70,11 +71,12 @@
                     <connections>
                         <outlet property="addButton" destination="NHa-7M-esr" id="Kco-q5-FNq"/>
                         <outlet property="tableView" destination="Yex-Jq-ZbL" id="OY9-UV-mGy"/>
+                        <segue destination="Ipw-Br-lzR" kind="presentation" identifier="PreviewPasswordSegue" id="WaS-ub-tVX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="928.98550724637687" y="76.339285714285708"/>
+            <point key="canvasLocation" x="938" y="75"/>
         </scene>
         <!--New Password View Controller-->
         <scene sceneID="X9R-8Z-WWv">
@@ -91,11 +93,6 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="New password" id="Lhq-vz-3iu">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="JUR-pw-Twg">
-                                            <connections>
-                                                <action selector="cancelPassword:" destination="3cz-vh-oo2" id="NWh-LD-2hu"/>
-                                            </connections>
-                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="PVv-tT-jPp">
                                             <connections>
                                                 <action selector="savePassword:" destination="3cz-vh-oo2" id="qFK-vC-tSR"/>
@@ -163,7 +160,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cancelButton" destination="JUR-pw-Twg" id="D4o-ud-rDj"/>
                         <outlet property="loginTextField" destination="nDb-hg-I4N" id="xcL-JF-ZPu"/>
                         <outlet property="passwordTextField" destination="fvp-za-coN" id="Rta-dO-vhw"/>
                         <outlet property="saveButton" destination="PVv-tT-jPp" id="vAe-KW-LVh"/>
@@ -173,7 +169,94 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5qU-pz-JvG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="IMJ-CX-9Rf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1776.9230769230769" y="85.308056872037909"/>
+            <point key="canvasLocation" x="1758" y="76"/>
+        </scene>
+        <!--Preview View Controller-->
+        <scene sceneID="jOh-bm-YVw">
+            <objects>
+                <viewController id="Ipw-Br-lzR" customClass="PreviewViewController" customModule="PasswordManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WgT-WW-pjS">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="webpage.value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pFl-PP-Q4m">
+                                <rect key="frame" x="20" y="113" width="350" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="login.value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rWE-gj-QEo">
+                                <rect key="frame" x="20" y="191" width="350" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naS-fm-oPl">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
+                                <items>
+                                    <navigationItem title="Saved password" id="O0c-2G-wBn"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Webpage" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="piM-uB-gwR">
+                                <rect key="frame" x="20" y="88" width="350" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epc-cb-bln">
+                                <rect key="frame" x="20" y="166" width="350" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sn5-Fq-ykB">
+                                <rect key="frame" x="20" y="244" width="350" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="password.value" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vYk-OO-h93">
+                                <rect key="frame" x="20" y="269" width="350" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="MVN-Aq-blC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="Sn5-Fq-ykB" secondAttribute="trailing" constant="20" id="10U-bQ-S1N"/>
+                            <constraint firstItem="vYk-OO-h93" firstAttribute="top" secondItem="Sn5-Fq-ykB" secondAttribute="bottom" constant="4" id="8T1-dN-A91"/>
+                            <constraint firstItem="piM-uB-gwR" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="DcJ-zZ-rjf"/>
+                            <constraint firstItem="piM-uB-gwR" firstAttribute="top" secondItem="naS-fm-oPl" secondAttribute="bottom" constant="32" id="LxZ-HM-YZQ"/>
+                            <constraint firstItem="epc-cb-bln" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="NDc-58-dyd"/>
+                            <constraint firstItem="pFl-PP-Q4m" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="Nmn-FB-7R5"/>
+                            <constraint firstItem="naS-fm-oPl" firstAttribute="trailing" secondItem="MVN-Aq-blC" secondAttribute="trailing" id="Oxj-Ef-PQG"/>
+                            <constraint firstItem="vYk-OO-h93" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="SFW-yz-Bah"/>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="epc-cb-bln" secondAttribute="trailing" constant="20" id="SOj-u5-R4j"/>
+                            <constraint firstItem="rWE-gj-QEo" firstAttribute="top" secondItem="epc-cb-bln" secondAttribute="bottom" constant="4" id="Wl2-0P-1yM"/>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="vYk-OO-h93" secondAttribute="trailing" constant="20" id="ZpI-GJ-aAn"/>
+                            <constraint firstItem="Sn5-Fq-ykB" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="ccO-bg-IAb"/>
+                            <constraint firstItem="pFl-PP-Q4m" firstAttribute="top" secondItem="piM-uB-gwR" secondAttribute="bottom" constant="4" id="fUy-3F-gWT"/>
+                            <constraint firstItem="naS-fm-oPl" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" id="gbg-br-FrD"/>
+                            <constraint firstItem="epc-cb-bln" firstAttribute="top" secondItem="pFl-PP-Q4m" secondAttribute="bottom" constant="32" id="iSf-oF-ah9"/>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="rWE-gj-QEo" secondAttribute="trailing" constant="20" id="jIK-Bd-dS5"/>
+                            <constraint firstItem="naS-fm-oPl" firstAttribute="top" secondItem="MVN-Aq-blC" secondAttribute="top" id="kr3-bN-Oy3"/>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="piM-uB-gwR" secondAttribute="trailing" constant="20" id="kz4-Pg-0X1"/>
+                            <constraint firstItem="Sn5-Fq-ykB" firstAttribute="top" secondItem="rWE-gj-QEo" secondAttribute="bottom" constant="32" id="nmo-el-rD8"/>
+                            <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="pFl-PP-Q4m" secondAttribute="trailing" constant="20" id="o8i-Ra-pVo"/>
+                            <constraint firstItem="rWE-gj-QEo" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="sxK-BC-EvQ"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="loginLabel" destination="rWE-gj-QEo" id="IYJ-DZ-6rj"/>
+                        <outlet property="passwordLabel" destination="vYk-OO-h93" id="lrY-Hi-U5M"/>
+                        <outlet property="webpageLabel" destination="pFl-PP-Q4m" id="JI7-c3-mB9"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xga-8a-TQv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2529" y="76"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="J6Q-1c-Xl2">

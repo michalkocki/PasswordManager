@@ -17,6 +17,7 @@
 		012AE45826050334008E4700 /* PasswordManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE45726050334008E4700 /* PasswordManagerTests.swift */; };
 		012AE46326050334008E4700 /* PasswordManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE46226050334008E4700 /* PasswordManagerUITests.swift */; };
 		012AE47426050A9D008E4700 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47326050A9D008E4700 /* NewPasswordViewController.swift */; };
+		012AE47926064B74008E4700 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47826064B74008E4700 /* PreviewViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		012AE46226050334008E4700 /* PasswordManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManagerUITests.swift; sourceTree = "<group>"; };
 		012AE46426050334008E4700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		012AE47326050A9D008E4700 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
+		012AE47826064B74008E4700 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				012AE44B26050334008E4700 /* LaunchScreen.storyboard */,
 				012AE44E26050334008E4700 /* Info.plist */,
 				012AE44626050334008E4700 /* PasswordManager.xcdatamodeld */,
+				012AE47826064B74008E4700 /* PreviewViewController.swift */,
 			);
 			path = PasswordManager;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 				012AE44826050334008E4700 /* PasswordManager.xcdatamodeld in Sources */,
 				012AE47426050A9D008E4700 /* NewPasswordViewController.swift in Sources */,
 				012AE44026050334008E4700 /* SceneDelegate.swift in Sources */,
+				012AE47926064B74008E4700 /* PreviewViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
