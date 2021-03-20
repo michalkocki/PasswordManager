@@ -16,6 +16,7 @@
 		012AE44D26050334008E4700 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 012AE44B26050334008E4700 /* LaunchScreen.storyboard */; };
 		012AE45826050334008E4700 /* PasswordManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE45726050334008E4700 /* PasswordManagerTests.swift */; };
 		012AE46326050334008E4700 /* PasswordManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE46226050334008E4700 /* PasswordManagerUITests.swift */; };
+		012AE47426050A9D008E4700 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47326050A9D008E4700 /* NewPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		012AE45E26050334008E4700 /* PasswordManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PasswordManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		012AE46226050334008E4700 /* PasswordManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordManagerUITests.swift; sourceTree = "<group>"; };
 		012AE46426050334008E4700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		012AE47326050A9D008E4700 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				012AE43F26050334008E4700 /* SceneDelegate.swift */,
 				012AE44126050334008E4700 /* ViewController.swift */,
 				012AE44326050334008E4700 /* Main.storyboard */,
+				012AE47326050A9D008E4700 /* NewPasswordViewController.swift */,
 				012AE44926050334008E4700 /* Assets.xcassets */,
 				012AE44B26050334008E4700 /* LaunchScreen.storyboard */,
 				012AE44E26050334008E4700 /* Info.plist */,
@@ -264,6 +267,7 @@
 				012AE44226050334008E4700 /* ViewController.swift in Sources */,
 				012AE43E26050334008E4700 /* AppDelegate.swift in Sources */,
 				012AE44826050334008E4700 /* PasswordManager.xcdatamodeld in Sources */,
+				012AE47426050A9D008E4700 /* NewPasswordViewController.swift in Sources */,
 				012AE44026050334008E4700 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
