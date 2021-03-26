@@ -7,12 +7,12 @@
 
 import UIKit
 import CoreData
+import CryptoKit
 
 class NewPasswordViewController : UIViewController {
     
 //    Storyboard elements
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var webpageTextField: UITextField!
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -20,9 +20,7 @@ class NewPasswordViewController : UIViewController {
     @IBAction func savePassword(_ sender: Any) {
         performSegue(withIdentifier: "secondUnwindToMainViewController", sender: self)
     }
-    
-    @IBAction func cancelPassword(_ sender: Any) {}
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
@@ -31,13 +29,13 @@ class NewPasswordViewController : UIViewController {
         
         newPassword.setValue(webpageTextField.text!, forKey: "webpage")
         newPassword.setValue(loginTextField.text!, forKey: "login")
-        //        Hash password here!
+        //let hashedPassword = hashPassword(password: passwordTextField.text!, salt: "salt")
         newPassword.setValue(passwordTextField.text!, forKey: "pass")
 
         if let vc = segue.destination as? ViewController {
             do {
                 try managedContext.save()
-                vc.passwords.append(newPassword)
+                vc.addedPasswords.append(newPassword)
                 vc.tableView.reloadData()
             }
             catch let error as NSError {
