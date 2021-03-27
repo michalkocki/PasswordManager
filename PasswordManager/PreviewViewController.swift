@@ -14,6 +14,7 @@ class PreviewViewController: UIViewController {
     @IBOutlet weak var webpageLabel: UILabel!
     @IBOutlet weak var loginLabel: UILabel!
     @IBOutlet weak var passwordLabel: UILabel!
+    @IBOutlet weak var showPasswordSwitch: UISwitch!
     var passwordToPreview: NSManagedObject = .init()
     
     override func viewDidLoad() {
@@ -21,9 +22,7 @@ class PreviewViewController: UIViewController {
         
         webpageLabel.text = passwordToPreview.value(forKeyPath: "webpage") as? String
         loginLabel.text = passwordToPreview.value(forKeyPath: "login") as? String
-        passwordLabel.text = openSealedPassword()
-        
-
+        passwordLabel.text = displayHiddenPasswordPlaceholder()
     }
     
     func openSealedPassword() -> String {
@@ -36,5 +35,21 @@ class PreviewViewController: UIViewController {
         let unsealedPassword = String(decoding: decryptedData, as: UTF8.self)
         return unsealedPassword
     }
+    
+    func displayHiddenPasswordPlaceholder() -> String {
+        var hiddenPasswordPlaceholder: String = ""
+        for _ in 0 ... (openSealedPassword().count-1) { hiddenPasswordPlaceholder += "•" }
+        return hiddenPasswordPlaceholder
+    }
+    
+    @IBAction func passwordSwitchValueChanged(_ sender: Any) {
+        if(showPasswordSwitch.isOn) {
+            passwordLabel.text = openSealedPassword()
+        } else {
+            passwordLabel.text = displayHiddenPasswordPlaceholder()
+        }
+    }
+    
+    
     
 }

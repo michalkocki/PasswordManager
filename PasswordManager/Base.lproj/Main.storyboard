@@ -3,7 +3,6 @@
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -63,15 +62,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2iE-hy-Lbq">
-                        <barButtonItem key="leftBarButtonItem" landscapeImage="gear" catalog="system" style="plain" id="m5s-3c-aF8">
-                            <imageReference key="image" image="gear" catalog="system" symbolScale="medium"/>
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="6Ln-K9-4YW">
-                                <rect key="frame" x="16" y="9" width="93.666666666666671" height="26"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Settings">
-                                    <imageReference key="image" image="gear" catalog="system" symbolScale="large"/>
-                                </state>
-                            </button>
+                        <barButtonItem key="leftBarButtonItem" title="Log out" id="Zck-bq-N5t">
+                            <connections>
+                                <action selector="logUserOut:" destination="BYZ-38-t0r" id="rak-7Z-H7c"/>
+                                <segue destination="QWm-rc-8a3" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueWithSegue:" id="PPq-nS-MXB"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NHa-7M-esr">
                             <connections>
@@ -86,6 +81,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="QWm-rc-8a3" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="938" y="75"/>
         </scene>
@@ -107,7 +103,7 @@
                                         <barButtonItem key="rightBarButtonItem" image="checkmark" catalog="system" id="PVv-tT-jPp">
                                             <connections>
                                                 <action selector="savePassword:" destination="3cz-vh-oo2" id="qFK-vC-tSR"/>
-                                                <segue destination="IMJ-CX-9Rf" kind="unwind" unwindAction="unwindSegueWithSegue:" id="LmS-fK-XOG"/>
+                                                <segue destination="IMJ-CX-9Rf" kind="unwind" identifier="secondUnwindToMainViewController" unwindAction="unwindSegueWithSegue:" id="Ret-pa-V52"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -232,13 +228,27 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ZTU-4c-0vB">
+                                <rect key="frame" x="20" y="306" width="51" height="31"/>
+                                <connections>
+                                    <action selector="passwordSwitchValueChanged:" destination="Ipw-Br-lzR" eventType="valueChanged" id="Ztd-pP-X2R"/>
+                                </connections>
+                            </switch>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VEe-ha-CyL">
+                                <rect key="frame" x="81" y="311" width="120" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="MVN-Aq-blC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="Sn5-Fq-ykB" secondAttribute="trailing" constant="20" id="10U-bQ-S1N"/>
+                            <constraint firstItem="VEe-ha-CyL" firstAttribute="leading" secondItem="ZTU-4c-0vB" secondAttribute="trailing" constant="12" id="1pX-Aq-OE9"/>
                             <constraint firstItem="vYk-OO-h93" firstAttribute="top" secondItem="Sn5-Fq-ykB" secondAttribute="bottom" constant="4" id="8T1-dN-A91"/>
                             <constraint firstItem="piM-uB-gwR" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="DcJ-zZ-rjf"/>
+                            <constraint firstItem="ZTU-4c-0vB" firstAttribute="top" secondItem="vYk-OO-h93" secondAttribute="bottom" constant="16" id="GJN-I9-3Bg"/>
                             <constraint firstItem="piM-uB-gwR" firstAttribute="top" secondItem="naS-fm-oPl" secondAttribute="bottom" constant="32" id="LxZ-HM-YZQ"/>
                             <constraint firstItem="epc-cb-bln" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="NDc-58-dyd"/>
                             <constraint firstItem="pFl-PP-Q4m" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="Nmn-FB-7R5"/>
@@ -254,14 +264,17 @@
                             <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="rWE-gj-QEo" secondAttribute="trailing" constant="20" id="jIK-Bd-dS5"/>
                             <constraint firstItem="naS-fm-oPl" firstAttribute="top" secondItem="MVN-Aq-blC" secondAttribute="top" id="kr3-bN-Oy3"/>
                             <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="piM-uB-gwR" secondAttribute="trailing" constant="20" id="kz4-Pg-0X1"/>
+                            <constraint firstItem="ZTU-4c-0vB" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="m2S-Au-RFp"/>
                             <constraint firstItem="Sn5-Fq-ykB" firstAttribute="top" secondItem="rWE-gj-QEo" secondAttribute="bottom" constant="32" id="nmo-el-rD8"/>
                             <constraint firstItem="MVN-Aq-blC" firstAttribute="trailing" secondItem="pFl-PP-Q4m" secondAttribute="trailing" constant="20" id="o8i-Ra-pVo"/>
                             <constraint firstItem="rWE-gj-QEo" firstAttribute="leading" secondItem="MVN-Aq-blC" secondAttribute="leading" constant="20" id="sxK-BC-EvQ"/>
+                            <constraint firstItem="VEe-ha-CyL" firstAttribute="centerY" secondItem="ZTU-4c-0vB" secondAttribute="centerY" id="vaK-Pk-Ol5"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="loginLabel" destination="rWE-gj-QEo" id="IYJ-DZ-6rj"/>
                         <outlet property="passwordLabel" destination="vYk-OO-h93" id="lrY-Hi-U5M"/>
+                        <outlet property="showPasswordSwitch" destination="ZTU-4c-0vB" id="ekf-Pp-GSK"/>
                         <outlet property="webpageLabel" destination="pFl-PP-Q4m" id="JI7-c3-mB9"/>
                     </connections>
                 </viewController>
@@ -448,7 +461,6 @@
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
-        <image name="gear" catalog="system" width="128" height="119"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

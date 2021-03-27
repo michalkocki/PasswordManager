@@ -19,8 +19,10 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         FetchEntityData()
-        
     }
+    
+    
+    @IBAction func unwindSegue(segue: UIStoryboardSegue) {}
 
     // Function is called when the 'login' button is tapped
     @IBAction func login(_ sender: Any) {

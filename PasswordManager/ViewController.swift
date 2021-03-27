@@ -54,6 +54,13 @@ class ViewController: UIViewController {
             print("Could not fetch data. \(error), \(error.userInfo)")
         }
     }
+    
+    @IBAction func logUserOut(_ sender: Any) {
+        let defaults = UserDefaults.standard
+        defaults.removeObject(forKey: "currentUser")
+        defaults.removeObject(forKey: "currentUserKey")
+        performSegue(withIdentifier: "unwindToLogin", sender: self)
+    }
 }
 
 // MARK: Extension: TableView DataSource, Delegate
