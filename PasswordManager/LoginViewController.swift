@@ -14,10 +14,12 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     var userObjectList: [NSManagedObject] = []
+    let userDefaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
         FetchEntityData()
+        
     }
 
     // Function is called when the 'login' button is tapped
@@ -25,6 +27,7 @@ class LoginViewController: UIViewController {
         FetchEntityData()
         if(ValidateForm()) {
             if(CheckLogin(userName: loginTextField.text!)) {
+                userDefaults.set(loginTextField.text!, forKey: "currentUser")
                 performSegue(withIdentifier: "SegueToMainViewController", sender: self)
             } else {
                 let incorrectPasswordAlert: UIAlertController = UIAlertController(title: "Błąd", message: "Nieprawidłowy login lub hasło", preferredStyle: .alert)
@@ -55,6 +58,7 @@ class LoginViewController: UIViewController {
                     // Check if hashed password from login form is the same as user's hashed password - using SHA512
                     let checkedPasswordData = Data(passwordTextField.text!.utf8)
                     if(SHA512.hash(data: checkedPasswordData).description) == userObjectList[index].value(forKeyPath: "userPassword") as? String {
+                        userDefaults.set(userObjectList[index].value(forKeyPath: "userSymmetricKey"), forKey: "currentUserKey")
                         return true
                     }
                     

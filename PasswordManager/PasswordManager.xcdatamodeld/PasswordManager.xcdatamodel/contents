@@ -3,14 +3,17 @@
     <entity name="AppUsers" representedClassName="AppUsers" syncable="YES" codeGenerationType="class">
         <attribute name="userLogin" optional="YES" attributeType="String"/>
         <attribute name="userPassword" optional="YES" attributeType="String"/>
+        <attribute name="userSymmetricKey" optional="YES" attributeType="String"/>
     </entity>
     <entity name="Password" representedClassName="Password" syncable="YES" codeGenerationType="class">
+        <attribute name="aesPassword" optional="YES" attributeType="Transformable" customClassName="NSData"/>
         <attribute name="login" optional="YES" attributeType="String"/>
         <attribute name="pass" optional="YES" attributeType="String"/>
+        <attribute name="user" optional="YES" attributeType="String"/>
         <attribute name="webpage" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Password" positionX="-63" positionY="-18" width="128" height="74"/>
-        <element name="AppUsers" positionX="-54" positionY="18" width="128" height="59"/>
+        <element name="AppUsers" positionX="-54" positionY="18" width="128" height="74"/>
+        <element name="Password" positionX="-63" positionY="-18" width="128" height="104"/>
     </elements>
 </model>

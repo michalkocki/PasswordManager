@@ -82,6 +82,11 @@ class RegisterViewController: UIViewController {
         newUserObject.setValue(login, forKey: "userLogin")
         let passwordData = Data(password.utf8)
         newUserObject.setValue(SHA512.hash(data: passwordData).description, forKey: "userPassword")
+        
+        let userKey = SymmetricKey(size: .bits256).withUnsafeBytes {
+            Data(Array($0)).base64EncodedString()
+        }
+        newUserObject.setValue(userKey, forKey: "userSymmetricKey")
 
         do {
             try managedContext.save()
@@ -90,5 +95,13 @@ class RegisterViewController: UIViewController {
             print("Could not save new user. \(error), \(error.userInfo)")
         }
     }
+    
+//    func GenerateRandomSalt() -> String {
+//        var randomSalt: String = ""
+//        for _ in 0 ... 32 {
+//            randomSalt += String(Int.random(in: 0..<10))
+//        }
+//        return randomSalt
+//    }
     
 }

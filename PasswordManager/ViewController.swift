@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        title = "Passwords"
     }
     
     // Fetching and reloading table everytime when view is appearing
@@ -32,6 +33,7 @@ class ViewController: UIViewController {
     
     // Pass the selection index value to the PreviewViewController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if(segue.identifier == "PreviewPasswordSegue") {
             let previewPasswordSegue = segue.destination as! PreviewViewController
             previewPasswordSegue.passwordToPreview = addedPasswords[selectionIndex]
@@ -43,6 +45,9 @@ class ViewController: UIViewController {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         let managedContext = appDelegate.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Password")
+        let currentUserName = UserDefaults.standard.object(forKey: "currentUser") as! String
+        let predicate = NSPredicate(format: "user == %@", currentUserName)
+        fetchRequest.predicate = predicate
         do {
             addedPasswords = try managedContext.fetch(fetchRequest)
         } catch let error as NSError {
