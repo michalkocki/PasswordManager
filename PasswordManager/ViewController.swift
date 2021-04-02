@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var moreButton: UIBarButtonItem!
     var addedPasswords: [NSManagedObject] = []
     var selectionIndex: Int = 0
 
@@ -22,6 +23,13 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         title = "Passwords"
+        
+        // Context menu
+        let moreMenuItems = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Logs", image: UIImage(systemName: "list.bullet.rectangle"), handler: { _ in print("Logs") }),
+            UIAction(title: "Log out", image: UIImage(systemName: "xmark"), attributes: .destructive, handler: { _ in self.logUserOut() })
+        ])
+        moreButton.menu = moreMenuItems
     }
     
     // Fetching and reloading table everytime when view is appearing
@@ -37,6 +45,8 @@ class ViewController: UIViewController {
         if(segue.identifier == "PreviewPasswordSegue") {
             let previewPasswordSegue = segue.destination as! PreviewViewController
             previewPasswordSegue.passwordToPreview = addedPasswords[selectionIndex]
+        } else if(segue.identifier == "unwindToLogin") {
+            print("Unwind to login")
         }
     }
     
@@ -55,12 +65,14 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func logUserOut(_ sender: Any) {
+    // Log user out and destroy UserDefaults logging data
+    func logUserOut() {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "currentUser")
         defaults.removeObject(forKey: "currentUserKey")
         performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
+
 }
 
 // MARK: Extension: TableView DataSource, Delegate

@@ -62,12 +62,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2iE-hy-Lbq">
-                        <barButtonItem key="leftBarButtonItem" title="Log out" id="Zck-bq-N5t">
-                            <connections>
-                                <action selector="logUserOut:" destination="BYZ-38-t0r" id="rak-7Z-H7c"/>
-                                <segue destination="QWm-rc-8a3" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueWithSegue:" id="PPq-nS-MXB"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="leftBarButtonItem" image="ellipsis.circle" catalog="system" id="Zck-bq-N5t"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="NHa-7M-esr">
                             <connections>
                                 <segue destination="3cz-vh-oo2" kind="presentation" identifier="newPasswordSegue" id="UOf-sT-5nY"/>
@@ -76,8 +71,10 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="NHa-7M-esr" id="Kco-q5-FNq"/>
+                        <outlet property="moreButton" destination="Zck-bq-N5t" id="c0R-oZ-4qW"/>
                         <outlet property="tableView" destination="Yex-Jq-ZbL" id="OY9-UV-mGy"/>
                         <segue destination="Ipw-Br-lzR" kind="presentation" identifier="PreviewPasswordSegue" id="WaS-ub-tVX"/>
+                        <segue destination="QWm-rc-8a3" kind="unwind" identifier="unwindToLogin" unwindAction="unwindSegueWithSegue:" id="njq-9y-UsP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -461,6 +458,7 @@
     </scenes>
     <resources>
         <image name="checkmark" catalog="system" width="128" height="114"/>
+        <image name="ellipsis.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
