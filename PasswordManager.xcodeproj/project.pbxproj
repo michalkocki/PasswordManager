@@ -19,6 +19,7 @@
 		012AE47426050A9D008E4700 /* NewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47326050A9D008E4700 /* NewPasswordViewController.swift */; };
 		012AE47926064B74008E4700 /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47826064B74008E4700 /* PreviewViewController.swift */; };
 		012AE47E2606915A008E4700 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012AE47D2606915A008E4700 /* LoginViewController.swift */; };
+		0138A2D12617A08F00340B56 /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0138A2D02617A08F00340B56 /* LogsViewController.swift */; };
 		01AAA862260A704C00C23FC4 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01AAA861260A704C00C23FC4 /* RegisterViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +59,7 @@
 		012AE47326050A9D008E4700 /* NewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordViewController.swift; sourceTree = "<group>"; };
 		012AE47826064B74008E4700 /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		012AE47D2606915A008E4700 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		0138A2D02617A08F00340B56 /* LogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		01AAA861260A704C00C23FC4 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				012AE43F26050334008E4700 /* SceneDelegate.swift */,
 				012AE44126050334008E4700 /* ViewController.swift */,
 				012AE44326050334008E4700 /* Main.storyboard */,
+				0138A2D02617A08F00340B56 /* LogsViewController.swift */,
 				01AAA861260A704C00C23FC4 /* RegisterViewController.swift */,
 				012AE47D2606915A008E4700 /* LoginViewController.swift */,
 				012AE47326050A9D008E4700 /* NewPasswordViewController.swift */,
@@ -275,6 +278,7 @@
 			files = (
 				012AE47E2606915A008E4700 /* LoginViewController.swift in Sources */,
 				012AE44226050334008E4700 /* ViewController.swift in Sources */,
+				0138A2D12617A08F00340B56 /* LogsViewController.swift in Sources */,
 				012AE43E26050334008E4700 /* AppDelegate.swift in Sources */,
 				01AAA862260A704C00C23FC4 /* RegisterViewController.swift in Sources */,
 				012AE44826050334008E4700 /* PasswordManager.xcdatamodeld in Sources */,

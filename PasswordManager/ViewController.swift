@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var moreButton: UIBarButtonItem!
     var addedPasswords: [NSManagedObject] = []
     var selectionIndex: Int = 0
+    let userDefaults = UserDefaults.standard
 
     // Function is needed to make the modal card buttons work - PreviewViewController 'check' button
     @IBAction func unwindSegue(segue: UIStoryboardSegue) {}
@@ -25,8 +26,9 @@ class ViewController: UIViewController {
         title = "Passwords"
         
         // Context menu
-        let moreMenuItems = UIMenu(options: .displayInline, children: [
-            UIAction(title: "Logs", image: UIImage(systemName: "list.bullet.rectangle"), handler: { _ in print("Logs") }),
+        let contextMenuTitle: String = "Logged as \(userDefaults.object(forKey: "currentUser") ?? "unidentified user")"
+        let moreMenuItems = UIMenu(title: contextMenuTitle, options: .displayInline, children: [
+            UIAction(title: "Logs", image: UIImage(systemName: "list.bullet.rectangle"), handler: { _ in self.performSegue(withIdentifier: "ShowLogsSegue", sender: self) }),
             UIAction(title: "Log out", image: UIImage(systemName: "xmark"), attributes: .destructive, handler: { _ in self.logUserOut() })
         ])
         moreButton.menu = moreMenuItems
@@ -70,7 +72,7 @@ class ViewController: UIViewController {
         let defaults = UserDefaults.standard
         defaults.removeObject(forKey: "currentUser")
         defaults.removeObject(forKey: "currentUserKey")
-        performSegue(withIdentifier: "unwindToLogin", sender: self)
+        self.performSegue(withIdentifier: "unwindToLogin", sender: self)
     }
 
 }
@@ -117,4 +119,31 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         selectionIndex = indexPath.row
         self.performSegue(withIdentifier: "PreviewPasswordSegue", sender: self)
     }
+    
+    func logAction(Action action: String, PreviousValue previousValue: Data, UpdatedValue updatedValue: Data) {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let passwordEntity = NSEntityDescription.entity(forEntityName: "Logs", in: managedContext)!
+        let newLog = NSManagedObject(entity: passwordEntity, insertInto: managedContext)
+        let logID = UUID.init()
+        let timestamp = Date.init()
+        
+        newLog.setValue(logID, forKey: "id")
+        newLog.setValue(action, forKey: "action")
+        newLog.setValue(timestamp, forKey: "timestamp")
+        newLog.setValue(UserDefaults.standard.object(forKey: "currentUser") as! String, forKey: "user")
+        newLog.setValue(previousValue, forKey: "previous_value")
+        newLog.setValue(updatedValue, forKey: "updated_value")
+        
+        do {
+            try managedContext.save()
+            print("\(timestamp.description): \(action) (ID: \(logID))")
+        }
+        catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
 }
+
+

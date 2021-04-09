@@ -5,6 +5,14 @@
         <attribute name="userPassword" optional="YES" attributeType="String"/>
         <attribute name="userSymmetricKey" optional="YES" attributeType="String"/>
     </entity>
+    <entity name="Logs" representedClassName="Logs" syncable="YES" codeGenerationType="class">
+        <attribute name="action" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="previous_value" optional="YES" attributeType="Transformable" customClassName="NSData"/>
+        <attribute name="timestamp" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="updated_value" optional="YES" attributeType="Transformable" customClassName="NSData"/>
+        <attribute name="user" optional="YES" attributeType="String"/>
+    </entity>
     <entity name="Password" representedClassName="Password" syncable="YES" codeGenerationType="class">
         <attribute name="aesPassword" optional="YES" attributeType="Transformable" customClassName="NSData"/>
         <attribute name="login" optional="YES" attributeType="String"/>
@@ -13,7 +21,8 @@
         <attribute name="webpage" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="AppUsers" positionX="-54" positionY="18" width="128" height="74"/>
-        <element name="Password" positionX="-63" positionY="-18" width="128" height="104"/>
+        <element name="AppUsers" positionX="51.5433349609375" positionY="-117.927734375" width="128" height="74"/>
+        <element name="Password" positionX="-4.3863525390625" positionY="-292.1646728515625" width="128" height="104"/>
+        <element name="Logs" positionX="45" positionY="-162" width="128" height="119"/>
     </elements>
 </model>

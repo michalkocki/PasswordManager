@@ -6,28 +6,56 @@
 //
 
 import XCTest
+import CryptoKit
 @testable import PasswordManager
 
 class PasswordManagerTests: XCTestCase {
 
+    var sutNewPasswordVC: NewPasswordViewController!
+    var sutRegisterVC: RegisterViewController!
+    
+    
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        super.setUp()
+        sutNewPasswordVC = NewPasswordViewController()
+        sutRegisterVC = RegisterViewController()
     }
 
     override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+        sutNewPasswordVC = nil
+        sutRegisterVC = nil
+        super.tearDown()
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testPasswordIsAdded() {
+        let testPassword = "password!"
+        let testKey = SymmetricKey(size: .bits256).withUnsafeBytes {
+            Data(Array($0)).base64EncodedString()
         }
+        
+        XCTAssertNotNil(sutNewPasswordVC.sealUserPassword(passwordText: testPassword, currentUserKey: testKey))
     }
+    
+    func testLogAction() {
+        let action = "Test action"
+        let previous = Data.init()
+        let updated = Data.init()
+        let user = "Test user"
+        
+        XCTAssertNoThrow(sutNewPasswordVC.logAction(Action: action, CurrentUser: user, PreviousValue: previous, UpdatedValue: updated))
+    }
+    
+    func testAddUser() {
+        let testLogin = "test"
+        let testPassword = "password"
+        
+        XCTAssertNoThrow(sutRegisterVC.AddNewUser(login: testLogin, password: testPassword))
+    }
+    
+    func testFetchEntityData() {
+        XCTAssertNoThrow(sutRegisterVC.FetchEntityData())
+    }
+    
+    
 
 }
